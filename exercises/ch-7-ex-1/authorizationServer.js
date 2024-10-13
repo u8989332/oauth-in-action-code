@@ -601,7 +601,7 @@ var checkClientMetadata = function (req, res) {
 			}
 		} else {
 			reg.grant_types = req.body.grant_types;
-			reg.reponse_types = req.body.response_types;
+			reg.response_types = req.body.response_types;
 			if (__.contains(req.body.grant_types, 'authorization_code') && !__.contains(req.body.response_types, 'code')) {
 				reg.response_types.push('code');
 			}
