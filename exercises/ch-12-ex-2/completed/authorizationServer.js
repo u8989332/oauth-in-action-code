@@ -242,12 +242,12 @@ var checkClientMetadata = function(req, res) {
 	var reg = {};
 
 	if (!req.body.token_endpoint_auth_method) {
-		reg.token_endpoint_auth_method = 'secret_basic';	
+		reg.token_endpoint_auth_method = 'client_secret_basic';	
 	} else {
 		reg.token_endpoint_auth_method = req.body.token_endpoint_auth_method;
 	}
 	
-	if (!__.contains(['secret_basic', 'secret_post', 'none'], reg.token_endpoint_auth_method)) {
+	if (!__.contains(['client_secret_basic', 'client_secret_post', 'none'], reg.token_endpoint_auth_method)) {
 		res.status(400).json({error: 'invalid_client_metadata'});
 		return;
 	}
@@ -324,7 +324,7 @@ app.post('/register', function (req, res){
 	}
 	
 	reg.client_id = randomstring.generate();
-	if (__.contains(['secret_basic', 'client_secret_post']), reg.token_endpoint_auth_method) {
+	if (__.contains(['client_secret_basic', 'client_secret_post']), reg.token_endpoint_auth_method) {
 		reg.client_secret = randomstring.generate();
 	}
 	
